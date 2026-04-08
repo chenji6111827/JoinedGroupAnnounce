@@ -43,8 +43,8 @@ Addon.GetDBValue = GetDBValue;
 
 
 local function LoadData()
-	HutuToolsDB = HutuToolsDB or {}
-	DB = HutuToolsDB or {}
+	JoinedGroupAnnounceDB = JoinedGroupAnnounceDB or {}
+	DB = JoinedGroupAnnounceDB or {}
 
 	local validKeys = {}
 

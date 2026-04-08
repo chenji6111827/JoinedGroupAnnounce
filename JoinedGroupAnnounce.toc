@@ -3,8 +3,8 @@
 ## Title: JoinedGroupAnnounce
 ## Title-zhCN:|cffff565eLFG进组通报|r 
 ## Author: CHEN
-## IconTexture:Interface/AddOns/HuluTools/Hulu
-## SavedVariables: HutuToolsDB
+## IconTexture:Interface/AddOns/JoinedGroupAnnounce/Hulu
+## SavedVariables: JoinedGroupAnnounceDB
 
 
 Template\UITemplate.xml

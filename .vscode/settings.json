@@ -1,0 +1,52 @@
+{
+    "Lua.runtime.version": "Lua 5.1",
+    "Lua.runtime.builtin": {
+        "basic": "disable",
+        "debug": "disable",
+        "io": "disable",
+        "math": "disable",
+        "os": "disable",
+        "package": "disable",
+        "string": "disable",
+        "table": "disable",
+        "utf8": "disable"
+    },
+    "Lua.workspace.library": [
+        "~\\.vscode\\extensions\\ketho.wow-api-0.22.3\\Annotations\\Core"
+    ],
+    "Lua.diagnostics.globals": [
+        "DEFAULT_CHAT_FRAME",
+        "SPELL_FAILED_NOT_KNOWN",
+        "ChallengesKeystoneFrame",
+        "COUNTDOWN",
+        "CRF_READY_CHECK",
+        "CloseAllBags",
+        "ChallengesFrame",
+        "JOIN",
+        "MacroFrame",
+        "MacroFrameSelectedMacroBackground",
+        "MacroFrameTextBackground",
+        "MacroFrameScrollFrame",
+        "MacroFrameCharLimitText",
+        "MacroHorizontalBarLeft",
+        "WorldMapFrame",
+        "UiMapPoint",
+        "JUST_OR",
+        "CLOSE",
+        "TELEPORT_TO_DUNGEON",
+        "READY",
+        "GameTooltip_Hide",
+        "IconSelectorPopupFrameTemplateMixin",
+        "MacroPopupFrame",
+        "Add",
+        "NUM_CHAT_WINDOWS",
+        "SlashCmdList",
+        "GARRISON_LANDING_STATUS_MISSION_COMBAT",
+        "CooldownViewerSettings",
+        "PixelUtil",
+        "CompactRaidFrameManager"
+    ],
+    "Lua.type.weakUnionCheck": true,
+    "Codegeex.RepoIndex": true,
+    "Codegeex.GenerationPreference": "automatic"
+}

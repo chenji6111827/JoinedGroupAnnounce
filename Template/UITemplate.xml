@@ -1,0 +1,137 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ c:/UI.xsd">
+
+    <Script file="UITemplateMixin.lua" />
+
+    <Texture name="DungeonButton-Up" file="Interface\EncounterJournal\UI-EncounterJournalTextures"
+        virtual="true">
+        <Size x="174" y="96" />
+        <TexCoords left="0.00195313" right="0.34179688" top="0.42871094" bottom="0.52246094" />
+    </Texture>
+
+    <Texture name="DungeonButton-Down" file="Interface\EncounterJournal\UI-EncounterJournalTextures"
+        virtual="true">
+        <Size x="174" y="96" />
+        <TexCoords left="0.00195313" right="0.34179688" top="0.33300781" bottom="0.42675781" />
+    </Texture>
+
+    <Texture name="DungeonButton-Highlight"
+        file="Interface\EncounterJournal\UI-EncounterJournalTextures" virtual="true">
+        <Size x="174" y="96" />
+        <TexCoords left="0.34570313" right="0.68554688" top="0.33300781" bottom="0.42675781" />
+    </Texture>
+
+    <Button name="InstanceIconButtonTemplate" inherits="InsecureActionButtonTemplate"
+        mixin="InstanceIconButtonTemplateMixin" registerForClicks="AnyDown" virtual="true">
+        <Size x="174" y="96" />
+        <Attributes>
+            <Attribute name="type" value="spell" />
+            <Attribute name="spell" value="1" type="number" />
+        </Attributes>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="bgImage">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="3" y="0" />
+                        <Anchor point="BOTTOMRIGHT" x="-3" y="0" />
+                    </Anchors>
+                    <TexCoords left="0" right="0.68359375" top="0" bottom="0.7421875" />
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString inherits="GameFontNormal" justifyH="LEFT" parentKey="range" text="82-83"
+                    hidden="true">
+                    <Size x="100" y="12" />
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="7" y="7" />
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <ButtonText parentKey="name" inherits="QuestTitleFontBlackShadow">
+            <Size x="150" y="0" />
+            <Anchors>
+                <Anchor point="TOP" x="0" y="-15" />
+            </Anchors>
+        </ButtonText>
+        <NormalTexture inherits="DungeonButton-Up" />
+        <PushedTexture inherits="DungeonButton-Down" />
+        <HighlightTexture inherits="DungeonButton-Highlight" />
+        <Scripts>
+            <OnEnter method="OnEnter" />
+            <OnLeave method="OnLeave" />
+        </Scripts>
+    </Button>
+
+    <Frame name="DefaultFrameNoBackGround" inherits="DefaultPanelBaseTemplate"
+        enableMouse="true" hidden="false" toplevel="true"
+        movable="true" registerForDrag="LeftButton" virtual="true">
+        <Size x="700" y="500" />
+        <Anchors>
+            <Anchor point="TOPLEFT" x="100" y="-84" />
+        </Anchors>
+        <Frames>
+            <Frame parentKey="moveArea" enableMouse="true" inherits="BackdropTemplate">
+                <Size y="30" />
+                <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="TOPRIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnMouseDown>
+                        if button == "LeftButton" then
+                            self:GetParent():StartMoving()
+                        end
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        self:GetParent():StopMovingOrSizing()
+                    </OnMouseUp>
+                </Scripts>
+            </Frame>
+            <Button name="$parentCloseButton" parentKey="CloseButton"
+                inherits="UIPanelCloseButtonDefaultAnchors" />
+        </Frames>
+    </Frame>
+
+    <Frame name="DefaultFrameWithBackGround" inherits="DefaultFrameNoBackGround" virtual="true">
+        <Layers>
+            <Layer level="BACKGROUND" textureSubLevel="-3">
+                <Texture>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="6" y="-16" />
+                        <Anchor point="BOTTOMRIGHT" x="-2" y="2" />
+                    </Anchors>
+                    <Color r="0" g="0" b="0" a="0.45" />
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+
+    <Frame name="JoinAlertTemplate" inherits="DefaultFrameWithBackGround"
+        virtual="true">
+        <Size x="700" y="80" />
+        <Anchors>
+            <Anchor point="CENTER" x="0" y="200" />
+        </Anchors>
+        <Frames>
+            <Button parentKey="teleportButton" hidden="true" inherits="InstanceIconButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeKey="$parent" relativePoint="BOTTOM" x="0"
+                        y="0" />
+                </Anchors>
+            </Button>
+        </Frames>
+        <Layers>
+            <Layer>
+                <FontString parentKey="text" text="test:" font="Fancy22Font">
+                    <Anchors>
+                        <Anchor point="CENTER" y="-5" />
+                    </Anchors>
+                    <Color r="1" g="0.5" b="0.5" a="1" />
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+</Ui>

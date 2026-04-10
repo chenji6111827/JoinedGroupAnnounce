@@ -1,5 +1,5 @@
 local addonName, Addon = ...
-local ModulesConfig, DB
+local AddonsConfig, DB
 --
 do
 	Addon.Api = Addon.Api or {};
@@ -12,9 +12,15 @@ do
 		end
 	});
 	Addon.Data = Addon.Data or {};
-	ModulesConfig = {
+	AddonsConfig = {
 		AutoKeyInsert = true,
 		JoinedGroupAnnounce = true,
+		positions = {
+			point = "CENTER",
+			relativePoint = "CENTER",
+			x = 0,
+			y = 0,
+		}
 	};
 end
 
@@ -49,14 +55,14 @@ local function LoadData()
 	local validKeys = {}
 
 	for dbKey, _ in pairs(DB) do
-		if ModulesConfig[dbKey] then
+		if AddonsConfig[dbKey] then
 			validKeys[dbKey] = true
 		else
 			DB[dbKey] = nil
 		end
 	end
 
-	for dbKey, value in pairs(ModulesConfig) do
+	for dbKey, value in pairs(AddonsConfig) do
 		if not validKeys[dbKey] then
 			DB[dbKey] = value
 		end

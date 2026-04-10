@@ -6,18 +6,45 @@ local Data = Addon.Data
 local Core = Addon.Core
 local UiElement = {}
 
+
+
+
+
 local function JoinedGroupAnnounce()
     if not UiElement.frame then
         UiElement.frame = CreateFrame("Frame", nil, UIParent,
             "JoinAlertTemplate")
     end
     local frame = UiElement.frame
+    frame:ClearAllPoints()
+    frame:SetPoint(
+        JoinedGroupAnnounceDB.positions.point,
+        UIParent,
+        JoinedGroupAnnounceDB.positions.relativePoint,
+        JoinedGroupAnnounceDB.positions.x,
+        JoinedGroupAnnounceDB.positions.y
+    )
+
+
+    frame:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        local point, _, relativePoint, x, y = self:GetPoint()
+        x = math.floor(x + 0.5)
+        y = math.floor(y + 0.5)
+        JoinedGroupAnnounceDB.positions.point = point
+        JoinedGroupAnnounceDB.positions.relativePoint = relativePoint
+        JoinedGroupAnnounceDB.positions.x = x
+        JoinedGroupAnnounceDB.positions.y = y
+    end)
+
+
     frame:Hide()
     frame:SetTitle(L["JoinFrameTitle"])
 
     --for testing
     -- do
-    -- local button = frame.teleportButton
+    --     frame:Show()
+    --     local button = frame.teleportButton
     --     button:Show()
     --     button:SetText(GetRealZoneText(2441))
     --     button:SetTexture(select(5, Api.GetMapUIInfo(391)))

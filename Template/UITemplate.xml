@@ -67,27 +67,16 @@
         enableMouse="true" hidden="false" toplevel="true"
         movable="true" registerForDrag="LeftButton" virtual="true">
         <Size x="700" y="500" />
-        <Anchors>
-            <Anchor point="TOPLEFT" x="100" y="-84" />
-        </Anchors>
+        <Scripts>
+            <OnDragStart>
+                self:StartMoving()
+            </OnDragStart>
+            <OnDragStop>
+                self:StopMovingOrSizing()
+            </OnDragStop>
+        </Scripts>
         <Frames>
-            <Frame parentKey="moveArea" enableMouse="true" inherits="BackdropTemplate">
-                <Size y="30" />
-                <Anchors>
-                    <Anchor point="TOPLEFT" />
-                    <Anchor point="TOPRIGHT" />
-                </Anchors>
-                <Scripts>
-                    <OnMouseDown>
-                        if button == "LeftButton" then
-                            self:GetParent():StartMoving()
-                        end
-                    </OnMouseDown>
-                    <OnMouseUp>
-                        self:GetParent():StopMovingOrSizing()
-                    </OnMouseUp>
-                </Scripts>
-            </Frame>
+
             <Button name="$parentCloseButton" parentKey="CloseButton"
                 inherits="UIPanelCloseButtonDefaultAnchors" />
         </Frames>

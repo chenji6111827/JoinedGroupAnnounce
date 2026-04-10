@@ -6,7 +6,6 @@ local Data = Addon.Data
 local Core = Addon.Core
 local UiElement = {}
 
-local eventHandle = nil
 
 
 local function JoinedGroupAnnounce()
@@ -52,7 +51,7 @@ local function JoinedGroupAnnounce()
     --     button:SetAttribute("type", "spell")
     --     button:SetAttribute("spell", 367416)
     -- end
-    eventHandle = EventRegistry:RegisterCallbackWithHandle("LFG_LIST_APPLICATION_STATUS_UPDATED",
+    EventRegistry:RegisterFrameEventAndCallback("LFG_LIST_APPLICATION_STATUS_UPDATED",
         function(_, resultid, status, _, GroupTitle)
             if not resultid or not (status == 'inviteaccepted') then return end
 
@@ -121,17 +120,9 @@ end
 
 local function EnableModule(state)
     if state then
-        if eventHandle then
-            eventHandle:Unregister()
-            eventHandle = nil
-        end
         JoinedGroupAnnounce()
     else
         Core:ClearTable(UiElement)
-        if eventHandle then
-            eventHandle:Unregister()
-            eventHandle = nil
-        end
     end
 end
 

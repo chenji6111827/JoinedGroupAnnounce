@@ -79,3 +79,4 @@ function Core:ClearTable(t)
     end
     EventRegistry:RegisterFrameEventAndCallback("PLAYER_LOGOUT", Clear)
 end
+

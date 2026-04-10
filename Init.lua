@@ -95,7 +95,7 @@ EventRegistry:RegisterFrameEventAndCallback("ADDON_LOADED", LoadAddon)
 local function LoadModules()
 	Addon.Core:InitializeModules()
 end
-EventRegistry:RegisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", LoadModules)
+EventRegistry:RegisterFrameEventAndCallback("PLAYER_LOGIN", LoadModules)
 
 
 --********--

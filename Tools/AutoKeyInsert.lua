@@ -81,9 +81,11 @@ local function CountDown()
         5)
     local function OnClick(self, button)
         if button == "LeftButton" then
+            PlaySound(12867)
             C_PartyInfo.DoCountdown(6)
             self.cooldown:SetCooldown(GetTime(), self.cooldownTime)
         elseif button == "RightButton" then
+            PlaySound(12867)
             C_PartyInfo.DoCountdown(10)
             self.cooldown:SetCooldown(GetTime(), 10)
         end
@@ -102,9 +104,11 @@ local function ReadyCheck()
         "UIPanelButtonTemplate", 5)
     local function OnClick(self, button)
         if button == "LeftButton" then
+            PlaySound(8960)
             DoReadyCheck()
             self.cooldown:SetCooldown(GetTime(), self.cooldownTime)
         elseif button == "RightButton" then
+            PlaySound(8960)
             C_PartyInfo.DoCountdown(10)
             self.cooldown:SetCooldown(GetTime(), 10)
         end

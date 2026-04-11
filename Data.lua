@@ -41,7 +41,8 @@ Data.teleportList = {
     [399] = { SpellID = 393256, MapID = 2521 }, -- Ruby Life Pools
     [402] = { SpellID = 393273, MapID = 2526 }, -- Algeth'ar Academy
     [406] = { SpellID = 393283, MapID = 2527 }, -- Halls of Infusion
-    [464] = { SpellID = 424197, MapID = 2579 }, -- Dawn of the Infinite
+    [464] = { SpellID = 424197, MapID = 2579 }, --Dawn of the Infinite: Murozond's Rise 永恒黎明：姆诺兹多的崛起
+    [463] = { SpellID = 424197, MapID = 2579 }, -- Dawn of the Infinite: Galakrond's Fall 永恒黎明：迦拉克隆的陨落
 
     -- Shadowlands
     [380] = { SpellID = 354469, MapID = 2284 }, -- Sanguine Depths
@@ -62,15 +63,28 @@ Data.teleportList = {
     [247] = { SpellID = UnitFactionGroup("player") == "Alliance" and 467553 or 467555, MapID = 1594 }, -- The Stormspire
     [251] = { SpellID = 410074, MapID = 1841 },                                                        -- The Underrot
     [248] = { SpellID = 424167, MapID = 1862 },                                                        -- Waycrest Manor
-    [369] = { SpellID = 373274, MapID = 2097 },                                                        -- Operation: Mechagon
+    [369] = { SpellID = 373274, MapID = 2097 },                                                        --Operation: Mechagon - Junkyard 麦卡贡行动 - 垃圾场
+    -- [246] = { SpellID = XX, MapID = 1771 },  -- Tol Dagor 托尔达戈
+    -- [249] = { SpellID = XX, MapID = 1762 },  -- Kings' Rest 诸王之眠
+    -- [250] = { SpellID = XX, MapID = 1877 },   -- Temple of Sethraliss 塞塔里斯神庙
+    -- [252] = { SpellID = XX, MapID = 1864 },  -- Shrine of the Storm 风暴神殿
+    [370] = { SpellID = 373274, MapID = 2097 }, -- Operation: Mechagon - Workshop 麦卡贡行动 - 车间
 
     -- Legion
-    [210] = { SpellID = 393766, MapID = 1571 }, -- Court of Stars
-    [227] = { SpellID = 373262, MapID = 1651 }, -- Return to Karazhan
-    [199] = { SpellID = 424153, MapID = 1501 }, -- Black Rook Hold
-    [198] = { SpellID = 424163, MapID = 1466 }, -- Darkheart Thicket
-    [206] = { SpellID = 410078, MapID = 1458 }, -- Neltharion's Lair
-    [200] = { SpellID = 393764, MapID = 1477 }, -- Halls of Valor
+    -- [197] = { SpellID = XX, MapID = 1456 },  -- Eye of Azshara 艾萨拉之眼
+    -- [207] = { SpellID = XX, MapID = 1493 },  -- Vault of the Wardens 守望者地窟
+    -- [208] = { SpellID = XX, MapID = 1492 },  -- Maw of Souls 噬魂之喉
+    -- [209] = { SpellID = XX, MapID = 1516 },  -- The Arcway 魔法回廊
+    -- [233] = { SpellID = XX, MapID = 1677 },  -- Cathedral of Eternal Night 永夜大教堂
+    -- [234] = { SpellID = XX, MapID = 1651 },  -- Return to Karazhan: Upper 重返卡拉赞（上层）
+    [210] = { SpellID = 393766, MapID = 1571 },  -- Court of Stars
+    [227] = { SpellID = 373262, MapID = 1651 },  -- Return to Karazhan
+    [199] = { SpellID = 424153, MapID = 1501 },  -- Black Rook Hold
+    [198] = { SpellID = 424163, MapID = 1466 },  -- Darkheart Thicket
+    [206] = { SpellID = 410078, MapID = 1458 },  -- Neltharion's Lair
+    [200] = { SpellID = 393764, MapID = 1477 },  -- Halls of Valor
+    [239] = { SpellID = 1254551, MapID = 1753 }, -- Seat of the Triumvirate 执政团之座
+    [583] = { SpellID = 1254551, MapID = 1753 }, -- Seat of the Triumvirate 执政团之座
 
     -- Warlords of Draenor
     [161] = { SpellID = 159898, MapID = 1209 }, -- Skyreach
@@ -96,8 +110,8 @@ Data.teleportList = {
     -- Cataclysm
     [456] = { SpellID = 424142, MapID = 643 }, -- Throne of the Tides
     [438] = { SpellID = 410080, MapID = 657 }, -- The Vortex Pinnacle
-    [507] = { SpellID = 445424, MapID = 670 }, -- Grim Batol
+    [507] = { SpellID = 445424, MapID = 670 }, --Grim Batol 格瑞姆巴托
 
     --	-- Wrath of the Lich King
-    [556] = { SpellID = 1254555, MapID = 658 }, -- Pit of Saron
+    [556] = { SpellID = 1254555, MapID = 658 }, --Pit of Saron 萨隆矿坑
 }

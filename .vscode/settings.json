@@ -44,7 +44,8 @@
         "GARRISON_LANDING_STATUS_MISSION_COMBAT",
         "CooldownViewerSettings",
         "PixelUtil",
-        "CompactRaidFrameManager"
+        "CompactRaidFrameManager",
+        "TimerTracker"
     ],
     "Lua.type.weakUnionCheck": true,
     "Codegeex.RepoIndex": true,

@@ -117,7 +117,6 @@ end
 
 
 
-
 local function EnableModule(state)
     if state then
         JoinedGroupAnnounce()

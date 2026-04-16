@@ -45,7 +45,11 @@
         "CooldownViewerSettings",
         "PixelUtil",
         "CompactRaidFrameManager",
-        "TimerTracker"
+        "TimerTracker",
+        "LFG_LIST_APP_INVITE_ACCEPTED",
+        "LFG_LIST_APP_FULL",
+        "LFG_LIST_APP_DECLINED_FULL_MESSAGE",
+        "LFG_LIST_APP_DECLINED_MESSAGE"
     ],
     "Lua.type.weakUnionCheck": true,
     "Codegeex.RepoIndex": true,

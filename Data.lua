@@ -19,7 +19,7 @@ Data.teleportList = {
     [557] = { SpellID = 1254400, MapID = 2805 }, -- Windrunner Spire风行者之塔
     [558] = { SpellID = 1254572, MapID = 2811 }, -- Magisters' Terrace魔导师平台
     [560] = { SpellID = 1254559, MapID = 2874 }, -- Maisara Caverns迈萨拉洞窟
-    [559] = { SpellID = 1254400, MapID = 2915 }, -- Nexus-Point Xenas节点希纳斯
+    [559] = { SpellID = 1254563, MapID = 2915 }, -- Nexus-Point Xenas节点希纳斯
     -- The war within
     [500] = { SpellID = 445443, MapID = 2648 },  -- The Rookery
     [499] = { SpellID = 445444, MapID = 2649 },  -- Priory of the Sacred Flame

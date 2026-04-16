@@ -8,7 +8,7 @@ local UiElement = {}
 
 
 
-local function JoinedGroupAnnounce()
+local function LFGApplicationsStatus()
     if not UiElement.frame then
         UiElement.frame = CreateFrame("Frame", nil, UIParent,
             "JoinAlertTemplate")
@@ -52,66 +52,65 @@ local function JoinedGroupAnnounce()
     --     button:SetAttribute("spell", 367416)
     -- end
     EventRegistry:RegisterFrameEventAndCallback("LFG_LIST_APPLICATION_STATUS_UPDATED",
-        function(_, resultid, status, _, GroupTitle)
-            if not resultid or not (status == 'inviteaccepted') then return end
-
+        function(_, resultid, newStatus, oldStatus, GroupTitle)
+            if not resultid then return end
             local info = C_LFGList.GetSearchResultInfo(resultid)
-            if not info or not info.activityIDs or #info.activityIDs == 0 then return end
-
-            local activityID = nil
-            for _, id in pairs(info.activityIDs) do
-                activityID = id
-                break
+            if not info or not info.activityIDs or #info.activityIDs == 0 then
+                return
             end
 
-            if not activityID then return end
-
-
-            local activityInfo = C_LFGList.GetActivityInfoTable(activityID) or "Unknown activity"
-            local groupTitle   = GroupTitle or ""
-            local name         = activityInfo.fullName
-            local mapID        = activityInfo.mapID
+            local activityID   = info.activityIDs[1]
+            local activityInfo = C_LFGList.GetActivityInfoTable(activityID) or
+                { fullName = "Unknown activity", mapID = 0 }
+            local groupTitle   = GroupTitle or info.name or ""
+            local name         = activityInfo.fullName or "Unknown activity"
+            local mapID        = activityInfo.mapID or 0
             local nameAndTitle = name .. " " .. groupTitle
-            frame.text:SetText(nameAndTitle)
-            frame:Show()
 
-            local isKeyStone = activityInfo.difficultyID == 8
-            local button = frame.teleportButton
 
-            if isKeyStone then
-                for mapChallengeModeID, mapInfo in pairs(Data.teleportList) do
-                    if mapInfo.MapID == mapID then
-                        button:SetAttribute("type", "spell")
-                        button:SetAttribute("spell", mapInfo.SpellID)
-                        button:SetTooltipText(Api:GetTeleportToolTipTextFromSpellID(mapInfo.SpellID))
+            if newStatus == 'inviteaccepted' then
+                frame.text:SetText(nameAndTitle)
+                frame:Show()
 
-                        local texture = select(5, Api.GetMapUIInfo(mapChallengeModeID))
-                        button:SetTexture(texture)
-                        button.bgImage:SetTexCoord(0.1, 0.72, 0.1, 0.65)
+                local isKeyStone = activityInfo.difficultyID == 8
+                local button = frame.teleportButton
 
-                        local instanceName = Api.GetRealZoneText(mapID)
-                        button:SetText(instanceName)
+                if isKeyStone then
+                    for mapChallengeModeID, mapInfo in pairs(Data.teleportList) do
+                        if mapInfo.MapID == mapID then
+                            button:SetAttribute("type", "spell")
+                            button:SetAttribute("spell", mapInfo.SpellID)
+                            button:SetTooltipText(Api:GetTeleportToolTipTextFromSpellID(mapInfo.SpellID))
 
-                        button:Show()
-                        break
+                            local texture = select(5, Api.GetMapUIInfo(mapChallengeModeID))
+                            button:SetTexture(texture)
+                            button.bgImage:SetTexCoord(0.1, 0.72, 0.1, 0.65)
+
+                            local instanceName = Api.GetRealZoneText(mapID)
+                            button:SetText(instanceName)
+
+                            button:Show()
+                            break
+                        end
                     end
-                end
-            else
-                C_Timer.After(3, function() frame:Hide() end)
-            end
-
-
-            local function Say()
-                if IsInGroup() then
-                    local safeMessage = nameAndTitle:gsub("|K.-|k", "")
-                    Api.SendChatMessage(JOIN .. safeMessage, "PARTY")
                 else
-                    print(">>>> " .. JOIN .. nameAndTitle)
+                    C_Timer.After(3, function() frame:Hide() end)
                 end
+
+
+                local function Say()
+                    local channel = IsInRaid() and "RAID" or "PARTY"
+                    local safeMessage = nameAndTitle:gsub("|K.-|k", "")
+                    Api.SendChatMessage(string.format("%s %s", LFG_LIST_APP_INVITE_ACCEPTED, safeMessage), channel)
+                end
+
+                C_Timer.After(2, Say)
+            elseif newStatus == 'declined_full' then
+                Api:Print(string.format("|cFFFF0000>>>> %s|r",
+                    string.format(LFG_LIST_APP_DECLINED_FULL_MESSAGE, nameAndTitle)))
+            elseif newStatus == 'declined' then
+                Api:Print(string.format("|cFFFF0000>>>> %s|r", string.format(LFG_LIST_APP_DECLINED_MESSAGE, nameAndTitle)))
             end
-
-
-            C_Timer.After(2, Say)
         end)
 end
 
@@ -119,7 +118,7 @@ end
 
 local function EnableModule(state)
     if state then
-        JoinedGroupAnnounce()
+        LFGApplicationsStatus()
     else
         Core:ClearTable(UiElement)
     end

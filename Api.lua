@@ -24,9 +24,17 @@ Api.GetSpellLink = C_Spell.GetSpellLink
 
 --Api By Self
 --- Add print message to chat window
-function Api:Print(msg)
-    if not msg or type(msg) ~= "string" then return end
-    local message = self:SetColorText("FFFF7F07", L["JoinFrameTitle"]) .. tostring(msg)
+function Api:Print(...)
+    local args = { ... }
+    if #args == 0 then return end
+
+    local parts = {}
+    for i, arg in ipairs(args) do
+        table.insert(parts, tostring(arg))
+    end
+    local msg = table.concat(parts, " ")
+
+    local message = self:SetColorText("FFFF7F07", L["JoinFrameTitle"]) .. msg
     DEFAULT_CHAT_FRAME:AddMessage(message)
     DEFAULT_CHAT_FRAME:ScrollToBottom()
 end
@@ -64,15 +72,17 @@ function Api:GetTeleportToolTipTextFromSpellID(spellID)
     local cd = Api.GetSpellCooldown(spellID)
     local spellName = Api.GetSpellName(spellID)
 
-    if cd.startTime > 0 and cd.duration > 0 then
+    if cd.startTime > 0 and cd.duration > 0 and cd.isEnabled then
         local remainingSeconds = (cd.startTime + cd.duration) - GetTime()
-        local hours = math.floor(remainingSeconds / 3600)
-        remainingSeconds = remainingSeconds % 3600
-        local minutes = math.floor(remainingSeconds / 60)
-        return L["Teleport On Cooldown"]:format(spellName, hours, minutes)
-    else
-        return L["Teleport Ready"]:format(spellName)
+        if remainingSeconds > 0 then
+            local hours = math.floor(remainingSeconds / 3600)
+            remainingSeconds = remainingSeconds % 3600
+            local minutes = math.floor(remainingSeconds / 60)
+            return L["Teleport On Cooldown"]:format(spellName, hours, minutes)
+        end
     end
+
+    return L["Teleport Ready"]:format(spellName)
 end
 
 function Api:RegisterSlashCommand(slash, func)

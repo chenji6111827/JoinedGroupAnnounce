@@ -6,7 +6,10 @@ local Data = Addon.Data
 local Core = Addon.Core
 local UiElement = {}
 
-
+local SharedData = {
+    currentGroupName = nil,
+    lastJoinedResultID = nil
+}
 
 local function LFGApplicationsStatus()
     if not UiElement.frame then
@@ -80,7 +83,9 @@ local function LFGApplicationsStatus()
                         if mapInfo.MapID == mapID then
                             button:SetAttribute("type", "spell")
                             button:SetAttribute("spell", mapInfo.SpellID)
-                            button:SetTooltipText(Api:GetTeleportToolTipTextFromSpellID(mapInfo.SpellID))
+                            button.spellID = mapInfo.SpellID
+                            button:HookScript("OnEnter",
+                                function(self) self:SetTooltipText(Api:GetTeleportToolTipTextFromSpellID(self.spellID)) end)
 
                             local texture = select(5, Api.GetMapUIInfo(mapChallengeModeID))
                             button:SetTexture(texture)
@@ -96,7 +101,6 @@ local function LFGApplicationsStatus()
                 else
                     C_Timer.After(3, function() frame:Hide() end)
                 end
-
 
                 local function Say()
                     local channel = IsInRaid() and "RAID" or "PARTY"
@@ -114,11 +118,89 @@ local function LFGApplicationsStatus()
         end)
 end
 
+local function LFGApplicantInfo()
+    local processedApplicants = {}
+
+
+    EventRegistry:RegisterFrameEventAndCallback("LFG_LIST_APPLICANT_LIST_UPDATED",
+        function(newPendingEntry, _)
+            if not C_LFGList.HasActiveEntryInfo() and not IsInGroup() then
+                return
+            end
+            if newPendingEntry then
+                local applicants = C_LFGList.GetApplicants()
+                if not applicants or #applicants == 0 then
+                    processedApplicants = {}
+                    return
+                end
+
+                for _, applicantID in ipairs(applicants) do
+                    local applicantInfo = C_LFGList.GetApplicantInfo(applicantID)
+
+                    if applicantInfo then
+                        if processedApplicants[applicantID] then
+                            return
+                        end
+
+                        local numMembers = applicantInfo.numMembers or 1
+                        local comment = applicantInfo.comment or ""
+
+                        processedApplicants[applicantID] = true
+
+                        Api:Print(string.format(L["LFG APPLYING NUMBERS"], numMembers))
+                        PlaySound(8959)
+
+                        for i = 1, numMembers do
+                            local name, class, localizedClass, level, itemLevel, honorLevel, tank, healer, damage, assignedRole, relationship, dungeonScore, pvpItemLevel, factionGroup, raceID, specID, isLeaver =
+                                C_LFGList.GetApplicantMemberInfo(applicantID, i)
+
+                            if name then
+                                local roles = {}
+                                if tank then table.insert(roles, TANK) end
+                                if healer then table.insert(roles, HEALER) end
+                                if damage then table.insert(roles, DAMAGER) end
+                                local roleStr = #roles > 0 and table.concat(roles, "/") or LFG_TYPE_NONE
+
+                                Api:Print("---")
+                                Api:Print(SHOW_PLAYER_NAMES .. "：" .. name)
+                                Api:Print(CLASS .. "：" .. localizedClass)
+                                Api:Print(ROLE .. "：" .. roleStr)
+                                Api:Print(string.format(CHARACTER_LINK_ITEM_LEVEL_TOOLTIP, itemLevel or 0))
+                                Api:Print(string.format(DUNGEON_SCORE_LINK_RATING, dungeonScore or 0))
+                                Api:Print(string.format(LEVEL_GAINED, level or 0))
+                            end
+                        end
+
+                        Api:Print(string.format(L["Comment"], comment ~= "" and comment or LFG_TYPE_NONE))
+                        Api:Print("----")
+                    end
+                end
+            end
+        end)
+
+    EventRegistry:RegisterFrameEventAndCallback("LFG_LIST_APPLICANT_UPDATED",
+        function(applicantID)
+            local applicantInfo = C_LFGList.GetApplicantInfo(applicantID)
+
+            if applicantInfo then
+                local status = applicantInfo.applicationStatus or "unknown"
+
+                if status ~= "applied" and status ~= "invited" then
+                    processedApplicants[applicantID] = nil
+                end
+            end
+        end)
+end
+
+
+
+
 
 
 local function EnableModule(state)
     if state then
         LFGApplicationsStatus()
+        LFGApplicantInfo()
     else
         Core:ClearTable(UiElement)
     end

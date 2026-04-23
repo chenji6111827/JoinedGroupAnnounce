@@ -20,6 +20,8 @@ if locale == "enUS" then
     L["JoinedGroupAnnounceDescription"] =
     "LFG Joined Announce,when you joined a group that will popup a frame to show what you are doing"
     L["ChallengeFrameEnhanceName"] = "Challenge Frame Enhance"
+    L["Comment"] = "Comment：%s"
+    L["LFG APPLYING NUMBERS"] = "|cFF00FF00%d players applying|r"
 elseif locale == "zhCN" then
     L["Teleport InCombat"] = "你不能在战斗中传送"
     L["Teleport Ready"] = "传送法术 |cFF00FF11%s|r 准备就绪"
@@ -34,4 +36,6 @@ elseif locale == "zhCN" then
     L["JoinedGroupAnnounceName"] = "LFG 进组通报"
     L["JoinedGroupAnnounceDescription"] = "LFG 进组通报，当加入一个队伍时，会弹出一个窗口显示你正在做什么"
     L["ChallengeFrameEnhanceName"] = "挑战地下城界面增强"
+    L["Comment"] = "留言：%s"
+    L["LFG APPLYING NUMBERS"] = "|cFF00FF00有%d人申请|r"
 end

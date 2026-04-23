@@ -124,9 +124,10 @@ local function LFGApplicantInfo()
 
     EventRegistry:RegisterFrameEventAndCallback("LFG_LIST_APPLICANT_LIST_UPDATED",
         function(newPendingEntry, _)
-            if not C_LFGList.HasActiveEntryInfo() and not IsInGroup() then
+            if not C_LFGList.HasActiveEntryInfo() or IsInRaid() then
                 return
             end
+
             if newPendingEntry then
                 local applicants = C_LFGList.GetApplicants()
                 if not applicants or #applicants == 0 then

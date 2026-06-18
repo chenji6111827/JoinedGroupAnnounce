@@ -1,4 +1,4 @@
-## Interface: 120005
+## Interface: 120007
 ## Version: 1.0.5
 ## Title: JoinedGroupAnnounce
 ## Title-zhCN:|cffff565eLFG进组通报|r 

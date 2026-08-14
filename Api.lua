@@ -99,3 +99,5 @@ function Api:RegisterSlashCommand(slash, func)
     end
     _G["SLASH_" .. cmd .. maxNum] = "/" .. slash
 end
+
+

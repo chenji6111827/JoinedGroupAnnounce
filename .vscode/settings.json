@@ -64,7 +64,8 @@
         "HEALS",
         "HEALER",
         "DAMAGER",
-        "LE_PARTY_CATEGORY_HOME"
+        "LE_PARTY_CATEGORY_HOME",
+        "TooltipDataProcessor"
     ],
     "Lua.type.weakUnionCheck": true,
     "Codegeex.RepoIndex": true,

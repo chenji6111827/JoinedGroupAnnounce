@@ -8,3 +8,6 @@
 
 **Fix a teleport spellID error.**
 **FIx teleport cooldown code error**
+
+## 2026年8月14日
+** Update to 12.1

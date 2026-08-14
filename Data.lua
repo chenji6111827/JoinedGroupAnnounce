@@ -16,10 +16,18 @@ local Data = Addon.Data
 --C_ChallengeMode.GetMapTable -Get Current Season Map List IDs
 Data.teleportList = {
     -- Midnight
-    [557] = { SpellID = 1254400, MapID = 2805 }, -- Windrunner Spire风行者之塔
-    [558] = { SpellID = 1254572, MapID = 2811 }, -- Magisters' Terrace魔导师平台
-    [560] = { SpellID = 1254559, MapID = 2874 }, -- Maisara Caverns迈萨拉洞窟
-    [559] = { SpellID = 1254563, MapID = 2915 }, -- Nexus-Point Xenas节点希纳斯
+    --senason 2
+    [584] = { SpellID = 1289776, MapID = 2859 },     -- Murder Row夺目谷
+    [585] = { SpellID = 1289777, MapID = 2923 },     -- Voidscar Arena虚空之痕竞技场
+    [586] = { SpellID = 1289773, MapID = 2825 },     -- Den of Nalorakk纳洛拉克的洞穴
+    [587] = { SpellID = 1289775, MapID = 2813 },     -- Murder Row密谋小径
+    [588] = { SpellID = 1289772, MapID = 2993 },     -- Altar of Fangs毒牙祭坛
+    --season 1
+    [557] = { SpellID = 1254400, MapID = 2805 },     -- Windrunner Spire风行者之塔
+    [558] = { SpellID = 1254572, MapID = 2811 },     -- Magisters' Terrace魔导师平台
+    [560] = { SpellID = 1254559, MapID = 2874 },     -- Maisara Caverns迈萨拉洞窟
+    [559] = { SpellID = 1254563, MapID = 2915 },     -- Nexus-Point Xenas节点希纳斯
+    --
     -- The war within
     [500] = { SpellID = 445443, MapID = 2648 },  -- The Rookery
     [499] = { SpellID = 445444, MapID = 2649 },  -- Priory of the Sacred Flame
@@ -65,8 +73,8 @@ Data.teleportList = {
     [248] = { SpellID = 424167, MapID = 1862 },                                                        -- Waycrest Manor
     [369] = { SpellID = 373274, MapID = 2097 },                                                        --Operation: Mechagon - Junkyard 麦卡贡行动 - 垃圾场
     -- [246] = { SpellID = XX, MapID = 1771 },  -- Tol Dagor 托尔达戈
-    -- [249] = { SpellID = XX, MapID = 1762 },  -- Kings' Rest 诸王之眠
-    -- [250] = { SpellID = XX, MapID = 1877 },   -- Temple of Sethraliss 塞塔里斯神庙
+    [249] = { SpellID = 1289778, MapID = 1762 },  -- Kings' Rest 诸王之眠
+    [250] = { SpellID = 1289782, MapID = 1877 },   -- Temple of Sethraliss 塞塔里斯神庙
     -- [252] = { SpellID = XX, MapID = 1864 },  -- Shrine of the Storm 风暴神殿
     [370] = { SpellID = 373274, MapID = 2097 }, -- Operation: Mechagon - Workshop 麦卡贡行动 - 车间
 
